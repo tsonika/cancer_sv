@@ -239,17 +239,19 @@ $BR/igv.sh
 \end{steps}
 
 \begin{information}
-Once IGV has started use \emph{File} and \emph{Load from File} to load the cancer\_cell\_line.bam. To dedicate more of the screen to read pile ups, right click on the left hand box that contains the \emph{cancer\_cell\_line.bam Junctions} then select \emph{Remove Track}. Go to \emph{View} menu and select \emph{Preferences}, then click on the Alignments tab and in the \emph{Visibility range threshold (kb)} text box, enter 600. This will allow you to increase your visibility of pile ups as you zoom out. Now look for check box for \emph{Filter secondary alignments} click on to ensure we do not see secondary alignments (alternate mapped position of a read) . Also ensure that \emph{Show soft-clipped bases} has been checked then click \emph{OK}.
+Once IGV has started use \emph{File} and \emph{Load from File} to load the cancer\_cell\_line.bam.  Go to \emph{View} menu and select \emph{Preferences}, then click on the Alignments tab and in the \emph{Visibility range threshold (kb)} text box, enter 600. This will allow you to increase your visibility of pile ups as you zoom out. Now look for check box for \emph{Filter secondary alignments} click on to ensure we do not see secondary alignments (alternate mapped position of a read) . Also ensure that \emph{Show soft-clipped bases} has been checked then click \emph{OK}.
  
 Then import \texttt{somatic.sv.bed} from your working directory using \emph{Regions} and \emph{Import Regions}. 
 
 \end{information}
 
 \subsection{Verify Deletion}
-\begin{advanced}
 
+\begin{advanced}
+This is an advanced section.
 \begin{steps}
-The somatic structural variants can then be browsed easily using the \emph{Region Navigator}. Select the deletion (chrX:76853017-77014863) from the \emph{Region Navigator} and click \emph{View}. This will centre the IGV alignment view on the selected structural variant. Close the regions of interest pop up window. The red bar below the ruler marks the region of the deletion.
+The somatic structural variants can then be browsed easily using the \emph{Region Navigator}. 
+Select the deletion (chrX:76853017-77014863) from the \emph{Region Navigator} and click \emph{View}. This will centre the IGV alignment view on the selected structural variant. Close the regions of interest pop up window. The red bar below the ruler marks the region of the deletion.
 
 It's usually best to zoom out once by clicking on the '-' sign in the toolbar at the top, to give a wide view of the supporting abnormal paired-end read mappings. 
 
@@ -266,16 +268,24 @@ How many abnormal \emph{paired-end read pairs} (red coloured F/R oriented read p
 \begin{answer}
 19, YES
 \end{answer}
+\end{questions}
+\begin{questions}
 Zoom into left breakpoint and tally the number of soft-clipped reads at both junctions.
 How many abnormal split-reads (soft-clipped reads) did you observe? Clue INFO:SR.
 \begin{answer}
 11
 \end{answer}
+\end{questions}
+
+\begin{questions}
 Go to the RefSeq genes track at the bottom of IGV and right click to \emph{Expanded}.
 Is the predicted deletion likely to have a deleterious impact on a gene? If so, what gene and exons are deleted?
 \begin{answer}
 ATRX, exons 2 to 25.
 \end{answer}
+\end{questions}
+
+\begin{questions}
 Does this region appear to be completely removed from this cancer genome? How can you tell?
 \begin{answer}
 Yes, there is no read coverage within this deletion region relative to the control genome. 
@@ -286,7 +296,7 @@ Yes, there is no read coverage within this deletion region relative to the contr
 
 \subsection{Verify translocation}
 \begin{advanced}
-
+This is an advanced section.
 \begin{steps}
 Select the duplication (chrX:45649874-45689322) from the \emph{Region Navigator}. 
 
@@ -299,16 +309,16 @@ Zoom out until you can see all the purple reads at the junction.
 \begin{questions}
 What is the direction of the purple cluster of reads (indicates that mate reads are mapped to Chr15)? Is it pointing to the tail or head of Chr18? 
 \begin{answer}
-Forward, towards the tail, or 3’ (+ive)
+Forward, towards the tail, or 3`` (+ive)
 \end{answer}
 \end{questions}
 
 \begin{questions}
 Right click on to one of the purple coloured reads and select \emph{View mate region in split-screen}. This will split the screen and display Chr15 on the left and place a red highlighted outline on both reads, to indicate the pairs. Right click and \emph{Sort alignments by} then select \emph{start location}.
 What is the direction of the yellow cluster of reads (indicates that mate reads are mapped to Chr18)? Is it pointing to the tail or head of Chr15? \newline
-If you wish to zoom in or out, first click inside of the chromosome ideogram panel, then ctrl- to zoom out and shift+ to zoom in. 
+(Hint: If you wish to zoom in or out, first click inside of the chromosome ideogram panel, then ctrl- to zoom out and shift+ to zoom in.) 
 \begin{answer}
-? Reverse, towards the head, or 5’ (+ive)
+Reverse, towards the head, or 5`` (+ive)
 \end{answer}
 \end{questions}
 
@@ -318,14 +328,20 @@ If you are uncertain then run a BLAT search using the INFO:CONSENSUS sequence (g
 \begin{answer}
 RF, head to tail, or 5 to 3. Therefore, Chr18 left side is fused to Chr15 right side.
 \end{answer}
+\end{questions}
+\begin{questions}
 Did DELLY predict a reciprocal translocation? How can you tell? 
 \begin{answer}
 No, as we would expect to observe a Chr18 right side fused to Chr15 left side, near the same breakpoints.  
 \end{answer}
+\end{questions}
+\begin{questions}
 What gene structures is this translocation predicted to impact? 
 \begin{answer}
 PARD6G on Chr15 and ADAMTSL3 on Chr18.
 \end{answer}
+\end{questions}
+\begin{questions}
 What is one possible reason why there is no observable read coverage after Chr18 breakpoint? 
 \begin{answer}
 Chromosome loss.
@@ -336,6 +352,7 @@ Chromosome loss.
 
 \subsection{Verify tandem duplication}
 \begin{advanced}
+This is an advanced section.
 \begin{steps}
 Select the tandem duplication (chrX:45649874-45689322) from the \emph{Region Navigator}.
 
@@ -346,11 +363,13 @@ Zoom out until you can see all the red paired-end reads spanning the two junctio
 \end{advanced}
 
 \begin{questions}
-Which is the order and orientation of these paired-end reads (FR, RF, FF or RR)? 
+Which is the order and orientation of these paired-end reads (FR, RF, FF or RR)? \newline
 \begin{answer}
 RF
 \end{answer}
-What is the estimated read-depth ratio of the cancer\_cell\_line versus normal control (INFO:RDRATIO) over the duplicate region? 
+\end{questions}
+\begin{questions}
+What is the estimated read-depth ratio of the cancer\_cell\_line versus normal control (INFO:RDRATIO) over the duplicate region? \newline
 \begin{answer}
 3.3 (~3 x increased read depth) 
 \end{answer}
@@ -359,6 +378,7 @@ What is the estimated read-depth ratio of the cancer\_cell\_line versus normal c
 
 \subsection{Verify Inversion}
 \begin{advanced}
+This is an advanced section.
 \begin{steps}
 
 Type into the search box near at tool bar, Chr20:54834492 
@@ -377,9 +397,11 @@ Which direction are the paired-end reads spanning (left or right spanning)?
 \begin{answer}
 Right
 \end{answer}
+\end{questions}
+\begin{questions}
 What is the estimated size of the inverted interval? 
 \begin{answer}
-55,408,660 – 54,834,492 = 574,168 bp
+55,408,660- 54,834,492 = 574,168 bp
 \end{answer}
 \end{questions}
 
