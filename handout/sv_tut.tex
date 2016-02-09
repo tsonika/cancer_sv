@@ -211,7 +211,7 @@ For large VCF files you should also zip and index them using bgzip and tabix. Pl
 
 \begin{steps}
 \begin{lstlisting}
-bgzip somatic.sv.vcf
+bgzip -c somatic.sv.vcf >somatic.sv.vcf.gz
 tabix somatic.sv.vcf.gz
 \end{lstlisting}
 \end{steps}
@@ -239,7 +239,7 @@ $BR/igv.sh
 \end{steps}
 
 \begin{information}
-Once IGV has started use \emph{File} and \emph{Load from File} to load the cancer\_cell\_line.bam.  Go to \emph{View} menu and select \emph{Preferences}, then click on the Alignments tab and in the \emph{Visibility range threshold (kb)} text box, enter 600. This will allow you to increase your visibility of pile ups as you zoom out. Now look for check box for \emph{Filter secondary alignments} click on to ensure we do not see secondary alignments (alternate mapped position of a read) . Also ensure that \emph{Show soft-clipped bases} has been checked then click \emph{OK}.
+Once IGV has started use \emph{File} and \emph{Load from File} to load the cancer\_cell\_line.bam (goto the folder SV and then data). \emph{View} menu and select \emph{Preferences}, then click on the Alignments tab and in the \emph{Visibility range threshold (kb)} text box, enter 600. This will allow you to increase your visibility of pile ups as you zoom out. Now look for check box for \emph{Filter secondary alignments} click on to ensure we do not see secondary alignments (alternate mapped position of a read) . Also ensure that \emph{Show soft-clipped bases} has been checked then click \emph{OK}.
  
 Then import \texttt{somatic.sv.bed} from your working directory using \emph{Regions} and \emph{Import Regions}. 
 
@@ -264,7 +264,7 @@ Read pairs that have a larger than expected insert size will be highlighted in r
 
 
 \begin{questions}
-How many abnormal \emph{paired-end read pairs} (red coloured F/R oriented read pairs) can you see that spans the deletion region? Does this number coincide with the INFO:PE? 
+How many abnormal \emph{paired-end read pairs} (red coloured F/R oriented read pairs) can you see that spans the deletion region? Does this number coincide with the INFO:PE? (Use LibreOffice Calc to open up the file somatic.sv.vcf) 
 \begin{answer}
 19, YES
 \end{answer}
@@ -296,11 +296,10 @@ Yes, there is no read coverage within this deletion region relative to the contr
 
 \subsection{Verify translocation}
 \begin{advanced}
-This is an advanced section.
 \begin{steps}
-Select the duplication (chrX:45649874-45689322) from the \emph{Region Navigator}. 
+Select the translocation breakpoint chr18 from the \emph{Region Navigator}. 
 
-Highlight the abnormal paired-ends by clicking and selecting \emph{Color alignments by} and then switch to \emph{insert size and pair orientation}. Also, invoke \emph{Sort alignments by} then select \emph{start location}.
+Highlight the abnormal paired-ends by clicking and selecting \emph{Color alignments by} and then switch to \emph{insert size and pair orientation}. Invoke \emph{Group alignment by} and select \emp{Chromosome of mate}. Also, invoke \emph{Sort alignments by} then select \emph{start location}.
 
 Zoom out until you can see all the purple reads at the junction.
 \end{steps}
@@ -309,16 +308,16 @@ Zoom out until you can see all the purple reads at the junction.
 \begin{questions}
 What is the direction of the purple cluster of reads (indicates that mate reads are mapped to Chr15)? Is it pointing to the tail or head of Chr18? 
 \begin{answer}
-Forward, towards the tail, or 3`` (+ive)
+Forward, towards the tail, or 3'' (+ive)
 \end{answer}
 \end{questions}
 
 \begin{questions}
-Right click on to one of the purple coloured reads and select \emph{View mate region in split-screen}. This will split the screen and display Chr15 on the left and place a red highlighted outline on both reads, to indicate the pairs. Right click and \emph{Sort alignments by} then select \emph{start location}.
+Right click on to one of the purple coloured reads and select \emph{View mate region in split-screen}. This will split the screen and display Chr15 on the left and place a red highlighted outline on both reads, to indicate the pairs. 
 What is the direction of the yellow cluster of reads (indicates that mate reads are mapped to Chr18)? Is it pointing to the tail or head of Chr15? \newline
 (Hint: If you wish to zoom in or out, first click inside of the chromosome ideogram panel, then ctrl- to zoom out and shift+ to zoom in.) 
 \begin{answer}
-Reverse, towards the head, or 5`` (+ive)
+Reverse, towards the head, or 5'' (+ive)
 \end{answer}
 \end{questions}
 
